@@ -1,0 +1,68 @@
+<style>
+    button {
+      min-width: 100%;
+      font-family: inherit;
+      appearance: none;
+      border: 0;
+      background: #2c2c2c;
+      color: #fff;
+      padding: 18px 46px;
+      font-size: 40px;
+      cursor: pointer;
+      font:700 1.7em/1.7em Torus, sans-serif;
+    }
+    
+    button:hover {
+      background: #444;
+    }
+    
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px #555;
+    }
+      
+    button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    </style>
+        <title>Ball Mayhem</title>
+        <base href="https://cdn.jsdelivr.net/gh/saturn-dev/gfiles@main/ball-mayhem/">
+        <link rel="stylesheet" href="files/style.css">
+        <script src="files/UnityProgress.js"></script>
+        <script src="files/unityloader19.js"></script>
+        <script src="/iframes/sitelock.js"></script>
+        
+        <script type="text/javascript">
+    
+          var gameInstance;
+    
+          window.onload = function () {
+    
+            let  bttn = document.createElement( "button" );
+            bttn.appendChild(document.createTextNode( "Click To Play!" ));
+            bttn.setAttribute('id', 'run_game');
+            bttn.style.display = 'none';
+            bttn.style.position = 'absolute';
+            document.body.appendChild(bttn);
+            
+            bttn.style.display = 'block';
+            bttn.style.left = ((document.body.clientWidth - bttn.offsetWidth)/2) + 'px';
+            bttn.style.top = ((document.body.clientHeight - bttn.offsetHeight)/2) + 'px';
+    
+            bttn.onclick = function () {
+    
+              gameInstance = UnityLoader.instantiate("gameContainer", "files/ball-mayhem.json", {onProgress: UnityProgress,Module:{onRuntimeInitialized: function() {UnityProgress(gameInstance, "complete")}}});
+              this.remove();
+            }
+          }
+        </script>
+    
+        <div class="webgl-content">
+    
+          <div id="gameContainer" style="width: 100%; height: 100%; margin: auto"></div>
+    
+        </div>
